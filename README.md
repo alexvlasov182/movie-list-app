@@ -37,6 +37,7 @@ Designed with **clean architecture and best practices**, this project is perfect
 
 ## Project Structure
 
+```bash
 src/
 ├─ api/ # API requests
 │ └─ tmdb.ts
@@ -53,6 +54,7 @@ src/
 ├─ App.tsx
 ├─ main.tsx
 └─ index.css
+```
 
 ---
 
