@@ -2,7 +2,11 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Movie } from '@/types/movie'
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+type MovieCardProps = {
+  movie: Movie
+}
+
+export default function MovieCard({ movie }: MovieCardProps) {
   return (
     <Card className="bg-gray-900 text-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 ease-in-out">
       <div className="relative">
@@ -22,7 +26,9 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         </div>
       </div>
       <div className="p-3 flex justify-between items-center">
-        <p className="text-sm text-gray-400">{movie.release_date}</p>
+        <p className="text-sm text-gray-400">
+          {movie.release_date ? movie.release_date.slice(0, 4) : 'N/A'}
+        </p>
         <Button variant="secondary" size="sm">
           Watch
         </Button>
