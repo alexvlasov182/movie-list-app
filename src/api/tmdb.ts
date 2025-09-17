@@ -12,6 +12,7 @@ const tmdb = axios.create({
 export const getPopularMovies = async (): Promise<Movie[]> => {
   try {
     const response = await tmdb.get('/movie/popular')
+    console.log(response)
     return response.data.results
   } catch (error) {
     console.error('Faild to fetch popular movies', error)

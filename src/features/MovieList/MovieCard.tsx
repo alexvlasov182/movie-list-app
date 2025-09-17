@@ -1,12 +1,15 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Movie } from '@/types/movie'
+import { useToggleWatch } from '@/hooks/useToggleWatch'
 
 type MovieCardProps = {
   movie: Movie
 }
 
 export default function MovieCard({ movie }: MovieCardProps) {
+  const toggleWatch = useToggleWatch()
+
   return (
     <Card className="bg-gray-900 text-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 ease-in-out">
       <div className="relative">
@@ -29,8 +32,13 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <p className="text-sm text-gray-400">
           {movie.release_date ? movie.release_date.slice(0, 4) : 'N/A'}
         </p>
-        <Button variant="secondary" size="sm">
-          Watch
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={() => toggleWatch.mutate(movie.id)}
+          disabled={toggleWatch.isSuccess}
+        >
+          {movie.watched ? 'Watched' : 'Watch'}
         </Button>
       </div>
     </Card>
