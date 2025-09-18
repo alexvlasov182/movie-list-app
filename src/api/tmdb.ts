@@ -9,6 +9,8 @@ const tmdb = axios.create({
   },
 })
 
+console.log(tmdb)
+
 export const getPopularMovies = async (): Promise<Movie[]> => {
   try {
     const response = await tmdb.get('/movie/popular')
