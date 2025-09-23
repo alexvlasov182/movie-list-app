@@ -25,6 +25,7 @@ export const getPopularMovies = async (): Promise<Movie[]> => {
 export const getMovieDetails = async (id: number): Promise<Movie> => {
   try {
     const response = await tmdb.get(`/movie/${id}`)
+    console.log(response)
     return response.data
   } catch (error) {
     console.error(`Faild to fetch movie with id ${id}`, error)
