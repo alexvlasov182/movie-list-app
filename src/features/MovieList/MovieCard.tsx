@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Movie } from '@/types/movie'
 import { useToggleWatch } from '@/hooks/useToggleWatch'
+import { useNavigate } from 'react-router-dom'
 
 type MovieCardProps = {
   movie: Movie
@@ -9,10 +10,14 @@ type MovieCardProps = {
 
 export default function MovieCard({ movie }: MovieCardProps) {
   const toggleWatch = useToggleWatch()
+  const navigate = useNavigate()
 
   return (
     <Card className="bg-gray-900 text-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 ease-in-out">
-      <div className="relative">
+      <div
+        className="relative cursor-pointer"
+        onClick={() => navigate(`/movie/${movie.id}`)}
+      >
         {movie.poster_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

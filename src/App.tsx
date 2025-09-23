@@ -1,15 +1,13 @@
-import MovieList from '@/features/MovieList/MovieList'
+import { Routes, Route } from 'react-router-dom'
+import Home from '@/pages/Home'
+import MovieDetails from './features/MovieList/MovieDetails'
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="p-4 border-b">
-        <h1 className="text-2xl font-bold">Movie List</h1>
-      </header>
-      <main>
-        <MovieList />
-      </main>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/movie/:id" element={<MovieDetails />} />
+    </Routes>
   )
 }
 

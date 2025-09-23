@@ -4,7 +4,11 @@ import EmptyState from '@/components/EmptyState'
 
 import { usePopularMovies } from '@/hooks/usePopularMovies'
 
-export default function MovieList() {
+interface MovieListProps {
+  filter: 'all' | 'watched' | 'unwatched'
+}
+
+export default function MovieList({ filter }: MovieListProps) {
   const { data: movies = [], isLoading, isError } = usePopularMovies()
 
   if (isLoading)
@@ -26,9 +30,16 @@ export default function MovieList() {
       </div>
     )
 
+  // filters
+  const filteredMovies = movies.filter((movie) => {
+    if (filter === 'watched') return movie.watched
+    if (filter === 'unwatched') return !movie.watched
+    return true
+  })
+
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 p-6">
-      {movies.map((movie) => (
+      {filteredMovies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>
